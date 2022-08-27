@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-使用JS创建</title>
+</head>
+
+<body>
+  <!-- 准备“容器” -->
+  <div id="container"></div>
+
+  <!-- 引入 React 核心库 -->
+  <script src="../lib/react.development.js"></script>
+  <!-- 引入 ReactDOM，用于支持 React 操作 DOM -->
+  <script src="../lib/react-dom.development.js"></script>
+  <!-- 引入 Babel，用于将 JSX 翻译成 JS -->
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/javascript">
+    // 1. 创建虚拟 DOM
+    const VDOM = React.createElement('h1', { id: 'title' }, React.createElement('span', {}, 'Hello React'))
+    // 2. 将虚拟 DOM 渲染至页面
+    ReactDOM.render(VDOM, document.getElementById('container'))
+  </script>
+</body>
+
+</html>
