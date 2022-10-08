@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-简化State</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Weather extends React.Component {
+
+      // 直接在 Weather 类中添加属性 state （覆盖继承过来的 state 属性），并且进行初始化
+      // 这样就可以避免在构造器中初始化 state 属性
+      state = { isHot: false };
+
+      render() {
+        const { isHot } = this.state;
+        return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>;
+      }
+
+      // 直接在 Weather 类中添加属性 changeWeather ，并且进行初始化
+      // 【注意】必须使用箭头函数，因为，箭头函数中的 this 指向其外部（这里指 Weather 的实例）
+      // 【注意】定义普通匿名函数，然后赋值给 changeWeather 会导致 this 丢失
+      changeWeather = () => {
+        const { isHot } = this.state;
+        this.setState({ isHot: !isHot });
+      }
+    }
+
+    ReactDOM.render(<Weather />, document.getElementById('container'));
+  </script>
+</body>
+
+</html>

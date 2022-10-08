@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01-标准State</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Weather extends React.Component {
+
+      constructor(props) {
+        // 思考：构造器被调用了几次？———— 1次
+        console.log('构造器被调用了');
+
+        super(props);
+        // 初始化状态
+        this.state = { isHot: false };
+        this.changeWeather = this.changeWeather.bind(this);
+      }
+
+      render() {
+        // 思考： render 方法被调用了几次？———— 1+n次（n为状态变更的次数）
+        console.log('render 方法被调用了');
+
+        // 读取状态
+        const { isHot } = this.state;
+        return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>;
+      }
+
+      changeWeather() {
+        // 复习： changeWeather 方法放在了哪里？———— Weather 类的原型对象，供类的实例使用
+        // 关于 this 丢失的问题，原因如下：
+        //    由于 changeWeather 被用作 onClick 的回调函数，所以， changeWeather 并非通过类的实例调用，而是直接调用
+        //    而且，类中的方法默认开启严格模式，所以， changeWeather 中的 this 为 undefined
+        // console.log(this);
+
+        // 获取原来的 isHot 值
+        const { isHot } = this.state;
+        // 严重注意：必须使用 setState 方法来修改 state 属性，并且这种修改是合并，不是替换，不影响 state 对象中的其他属性
+        this.setState({ isHot: !isHot });
+        // 严重注意：不能直接修改 state 属性，以下是错误的方法
+        // this.state.isHot = !isHot;
+      }
+    }
+
+    ReactDOM.render(<Weather />, document.getElementById('container'));
+  </script>
+</body>
+
+</html>
