@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-对Props进行类型限制</title>
+</head>
+
+<body>
+  <div id="Tom"></div>
+  <div id="Jerry"></div>
+  <div id="Jennie"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/prop-types.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Person extends React.Component {
+      // 3. Props 的简化写法：使用 static 关键字
+      static propTypes = {
+        name: PropTypes.string.isRequired,
+        sex: PropTypes.string,
+        age: PropTypes.number
+      }
+      static defaultProps = {
+        sex: '男',
+        age: 18
+      }
+
+      render() {
+        const { name, sex, age } = this.props;
+        return (
+          <ul>
+            <li>姓名：{name}</li>
+            <li>性别：{sex}</li>
+            <li>年龄：{age}</li>
+          </ul>
+        )
+      }
+    }
+
+    // 1. 通过 propTypes 属性进行类型检查
+    // Person.propTypes = {
+    //   name: PropTypes.string.isRequired,
+    //   sex: PropTypes.string,
+    //   age: PropTypes.number
+    // }
+
+    // 2. 通过 defaultProps 属性设置默认值
+    // Person.defaultProps = {
+    //   sex: '男',
+    //   age: 18
+    // }
+
+    const people = [
+      { name: "Tom", sex: "男", age: 17 },
+      { name: "Jerry", sex: "男", age: 18 },
+      { name: "Jennie", sex: "女", age: 19 }
+    ]
+    ReactDOM.render(<Person {...people[0]} />, document.getElementById('Tom'));
+    ReactDOM.render(<Person {...people[1]} />, document.getElementById('Jerry'));
+    ReactDOM.render(<Person {...people[2]} />, document.getElementById('Jennie'));
+  </script>
+</body>
+
+</html>

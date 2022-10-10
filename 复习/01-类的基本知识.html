@@ -60,6 +60,20 @@
     const mark = new Student('Mark', 17, '高二');
     console.log(mark);
     mark.sayHi();
+
+    class Car {
+      state = 'running'
+      wheelNum = 4
+      // brand 属性定义在 Car 类的实例对象的原型上
+      static brand = 'Benz'
+    }
+    // 这样也可以将 brand 属性定义在原型上
+    // Car.brand = 'Benz'
+
+    const car = new Car();
+    console.log(car);
+    // 这样可以直接输出原型上定义的 brand 属性
+    console.log(Car.brand);
   </script>
 </body>
 

@@ -23,3 +23,12 @@ curl https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js > lib/react
 
 访问以下页面，下载 Babel 的依赖包，存放到 lib 文件夹：  
 https://www.cdnpkg.com/babel-standalone/file/babel.min.js/
+
+### 安装 PropTypes 依赖
+
+使用 PropTypes 进行类型检查，具体参考：  
+https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html#gatsby-focus-wrapper
+
+```shell
+curl https://unpkg.com/prop-types@15.6.2/prop-types.js > lib/prop-types.js
+```
