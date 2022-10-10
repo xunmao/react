@@ -33,9 +33,9 @@
 
     // 标准赋值方法（显式地写出属性并赋值）
     // 【注意】 age 属性的类型不应该是字符串类型，而应该是 Number 类型，注意写法（花括号代表插入 JS 表达式）
-    // ReactDOM.render(<Person name="Tom" sex="男" age={17} />, document.getElementById('Tom'));
-    // ReactDOM.render(<Person name="Jerry" sex="男" age={18} />, document.getElementById('Jerry'));
-    // ReactDOM.render(<Person name="Jennie" sex="女" age={19} />, document.getElementById('Jennie'));
+    // ReactDOM.createRoot(document.getElementById('Tom')).render(<Person name="Tom" sex="男" age={17} />);
+    // ReactDOM.createRoot(document.getElementById('Jerry')).render(<Person name="Jerry" sex="男" age={18} />);
+    // ReactDOM.createRoot(document.getElementById('Jennie')).render(<Person name="Jennie" sex="女" age={19} />);
 
     // 简化赋值方法（通过 Babel 和 React 展开对象，然后批量赋值，属性名称必须一一对应）
     const people = [
@@ -43,9 +43,9 @@
       { name: "Jerry", sex: "男", age: 18 },
       { name: "Jennie", sex: "女", age: 19 }
     ]
-    ReactDOM.render(<Person {...people[0]} />, document.getElementById('Tom'));
-    ReactDOM.render(<Person {...people[1]} />, document.getElementById('Jerry'));
-    ReactDOM.render(<Person {...people[2]} />, document.getElementById('Jennie'));
+    ReactDOM.createRoot(document.getElementById('Tom')).render(<Person {...people[0]} />);
+    ReactDOM.createRoot(document.getElementById('Jerry')).render(<Person {...people[1]} />);
+    ReactDOM.createRoot(document.getElementById('Jennie')).render(<Person {...people[2]} />);
   </script>
 </body>
 

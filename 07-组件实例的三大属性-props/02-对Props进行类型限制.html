@@ -61,9 +61,9 @@
       { name: "Jerry", sex: "男", age: 18 },
       { name: "Jennie", sex: "女", age: 19 }
     ]
-    ReactDOM.render(<Person {...people[0]} />, document.getElementById('Tom'));
-    ReactDOM.render(<Person {...people[1]} />, document.getElementById('Jerry'));
-    ReactDOM.render(<Person {...people[2]} />, document.getElementById('Jennie'));
+    ReactDOM.createRoot(document.getElementById('Tom')).render(<Person {...people[0]} />);
+    ReactDOM.createRoot(document.getElementById('Jerry')).render(<Person {...people[1]} />);
+    ReactDOM.createRoot(document.getElementById('Jennie')).render(<Person {...people[2]} />);
   </script>
 </body>
 

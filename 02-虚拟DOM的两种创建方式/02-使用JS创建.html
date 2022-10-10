@@ -23,7 +23,7 @@
     // 1. 创建虚拟 DOM
     const VDOM = React.createElement('h1', { id: 'title' }, React.createElement('span', {}, 'Hello React'))
     // 2. 将虚拟 DOM 渲染至页面
-    ReactDOM.render(VDOM, document.getElementById('container'))
+    ReactDOM.createRoot(document.getElementById('container')).render(VDOM);
   </script>
 </body>
 

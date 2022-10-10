@@ -22,7 +22,7 @@
         <span>Hello React</span>
       </h1>
     )
-    ReactDOM.render(VDOM, document.getElementById('container'))
+    ReactDOM.createRoot(document.getElementById('container')).render(VDOM);
 
     /**
      * 关于虚拟DOM：

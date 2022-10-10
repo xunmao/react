@@ -39,7 +39,7 @@
       </div>
     )
     // 2. 渲染虚拟 DOM 至页面
-    ReactDOM.render(VDOM, document.getElementById('container'))
+    ReactDOM.createRoot(document.getElementById('container')).render(VDOM);
 
     /**
      * JSX 语法

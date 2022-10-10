@@ -25,10 +25,10 @@
     }
 
     // 2. 渲染组件到页面
-    ReactDOM.render(<MyComponent />, document.getElementById('container'))
+    ReactDOM.createRoot(document.getElementById('container')).render(<MyComponent />);
 
     /**
-     * 执行 ReactDOM.render(<MyComponent />, document.getElementById('container')) 之后，发生了什么？
+     * 执行 ReactDOM.createRoot(document.getElementById('container')).render(<MyComponent />) 之后，发生了什么？
      * 1. React 解析组件标签，找到 MyComponent 组件；
      * 2. React 发现 MyComponent 是一个函数式组件，然后调用该函数；
      * 3. React 将函数返回值（虚拟DOM）转换为真实DOM，然后呈现在页面上
