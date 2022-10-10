@@ -29,11 +29,14 @@
 
       // 直接在 Weather 类中添加属性 changeWeather ，并且进行初始化
       // 【注意】必须使用箭头函数，因为，箭头函数中的 this 指向其外部（这里指 Weather 的实例）
-      // 【注意】定义普通匿名函数，然后赋值给 changeWeather 会导致 this 丢失
       changeWeather = () => {
         const { isHot } = this.state;
         this.setState({ isHot: !isHot });
       }
+      // 【注意】定义普通匿名函数，然后赋值给 changeWeather 会导致 this 丢失
+      // changeWeather = function () {
+      //   console.log(this);
+      // }
     }
 
     ReactDOM.render(<Weather />, document.getElementById('container'));

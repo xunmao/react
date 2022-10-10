@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Props的基本用法</title>
+  <title>01-Props的基本用法</title>
 </head>
 
 <body>
@@ -32,9 +32,10 @@
     }
 
     // 标准赋值方法（显式地写出属性并赋值）
-    // ReactDOM.render(<Person name="Tom" sex="男" age="17" />, document.getElementById('Tom'));
-    // ReactDOM.render(<Person name="Jerry" sex="男" age="18" />, document.getElementById('Jerry'));
-    // ReactDOM.render(<Person name="Jennie" sex="女" age="19" />, document.getElementById('Jennie'));
+    // 【注意】 age 属性的类型不应该是字符串类型，而应该是 Number 类型，注意写法（花括号代表插入 JS 表达式）
+    // ReactDOM.render(<Person name="Tom" sex="男" age={17} />, document.getElementById('Tom'));
+    // ReactDOM.render(<Person name="Jerry" sex="男" age={18} />, document.getElementById('Jerry'));
+    // ReactDOM.render(<Person name="Jennie" sex="女" age={19} />, document.getElementById('Jennie'));
 
     // 简化赋值方法（通过 Babel 和 React 展开对象，然后批量赋值，属性名称必须一一对应）
     const people = [
