@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-函数式组件使用Props</title>
+</head>
+
+<body>
+  <div id="Tom"></div>
+  <div id="Jerry"></div>
+  <div id="Jennie"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/prop-types.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    function Person(props) {
+      const { name, sex, age } = props;
+      return (
+        <ul>
+          <li>姓名：{name}</li>
+          <li>性别：{sex}</li>
+          <li>年龄：{age}</li>
+        </ul>
+      )
+    }
+
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number
+    }
+
+    Person.defaultProps = {
+      sex: '男',
+      age: 18
+    }
+
+    const people = [
+      { name: "Tom", sex: "男", age: 17 },
+      { name: "Jerry", sex: "男", age: 18 },
+      { name: "Jennie", sex: "女", age: 19 }
+    ]
+    ReactDOM.createRoot(document.getElementById('Tom')).render(<Person {...people[0]} />);
+    ReactDOM.createRoot(document.getElementById('Jerry')).render(<Person {...people[1]} />);
+    ReactDOM.createRoot(document.getElementById('Jennie')).render(<Person {...people[2]} />);
+  </script>
+</body>
+
+</html>
