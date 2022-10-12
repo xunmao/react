@@ -10,27 +10,46 @@
 
 <body>
   <script>
+    // 定义 Person 类
     class Person {
       constructor(name, age) {
         this.name = name;
         this.age = age;
       }
+      // 该函数存在于 Person 类的原型对象上
       sayThis() {
-        console.log(this);
+        console.log('this 指向: ', this);
+      }
+      // 该属性（箭头函数）存在于 Person 类的实例对象上
+      sayThisArrow = () => {
+        console.log('this 指向: ', this);
       }
     }
-    const tom = new Person('tom', 18);
+
     // 通过 Person 类的实例调用 sayThis 方法
+    console.log('通过 Person 类的实例调用 sayThis 方法');
+    const tom = new Person('tom', 18);
     tom.sayThis();
 
+    // 不通过 Person 类的实例，而是直接调用 sayThis 方法
+    console.log('不通过 Person 类的实例，而是直接调用 sayThis 方法');
     const sayThat = tom.sayThis;
-    // 不通过 Person 类的实例，直接调用 sayThat 方法
     sayThat();
 
-    // 通过 bind 方法，生成新的函数，并将其绑定到 tom 对象上
+    // 通过 bind 方法，生成新的函数，并将其绑定到 tom （类的实例）对象上
     // 此时，新函数的 this 就变成了 tom ，也就是 Person 类的实例对象
+    console.log('通过 bind 方法，生成新的函数，并将其绑定到 tom （类的实例）对象上');
     const sayThisAgain = sayThat.bind(tom);
     sayThisAgain();
+
+    // 通过 Person 类的实例调用 sayThisArrow （箭头函数）方法
+    console.log('通过 Person 类的实例调用 sayThisArrow 方法');
+    tom.sayThisArrow();
+
+    // 不通过 Person 类的实例，而是直接调用 sayThisArrow （箭头函数）方法
+    console.log('不通过 Person 类的实例，而是直接调用 sayThisArrow （箭头函数）方法');
+    const sayThatArrow = tom.sayThisArrow;
+    sayThatArrow();
   </script>
 </body>
 

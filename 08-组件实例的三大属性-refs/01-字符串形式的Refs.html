@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>01-字符串形式的refs</title>
+  <title>01-字符串形式的Refs</title>
   <style>
     input {
       margin-right: 10px;
@@ -21,6 +21,8 @@
   <script src="../lib/babel.min.js"></script>
 
   <script type="text/babel">
+    // 【注意】字符串形式的 ref 已经过时，官方不建议继续使用
+    // https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs
     class MyComponent extends React.Component {
       showDataOnclick = () => {
         const { inputOnclick } = this.refs;

@@ -46,9 +46,10 @@
 
         // 获取原来的 isHot 值
         const { isHot } = this.state;
-        // 严重注意：必须使用 setState 方法来修改 state 属性，并且这种修改是合并，不是替换，不影响 state 对象中的其他属性
+        // 【严重注意】必须使用 setState 方法来修改 state 属性，调用 setState 方法后， React 会自动调用 render 方法，重新渲染页面
+        // 通过 setState 方法进行的修改是合并，不是替换，不影响 state 对象中的其他属性
         this.setState({ isHot: !isHot });
-        // 严重注意：不能直接修改 state 属性，以下是错误的方法
+        // 【严重注意】不能直接修改 state 属性，以下是错误的方法
         // this.state.isHot = !isHot;
       }
     }
