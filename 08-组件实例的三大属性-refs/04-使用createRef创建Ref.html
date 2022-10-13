@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04-使用createRef创建Ref</title>
+  <style>
+    input,
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class MyComponent extends React.Component {
+
+      // React.createRef 被调用之后，返回一个容器，该容器可以存储被 ref 标识的节点
+      // 【注意】容器是“专人专用”的，每个容器只能储存一个标识节点，储存新节点时会覆盖之前的节点
+      inputOnclickRef = React.createRef();
+      inputOnblurRef = React.createRef();
+
+      showDataOnclick = () => {
+        alert(this.inputOnclickRef.current.value);
+      }
+
+      showDataOnblur = () => {
+        alert(this.inputOnblurRef.current.value);
+      }
+
+      render() {
+        return (
+          <div>
+            <input ref={this.inputOnclickRef} type="text" placeholder="点击按钮提示数据" />
+            <button onClick={this.showDataOnclick} >点我提示左侧的数据</button>
+            <input ref={this.inputOnblurRef} type="text" placeholder="失去焦点提示数据" onBlur={this.showDataOnblur} />
+          </div>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<MyComponent />);
+  </script>
+</body>
+
+</html>

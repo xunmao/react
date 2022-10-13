@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件处理</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class MyComponent extends React.Component {
+
+      // (1). 在 React 中通过 onXxx 属性指定事件处理函数（注意大小写）
+      //    a. React 使用的是自定义（合成）事件，而不使用原生 DOM 事件————为了更好的兼容性
+      //    b. React 中的事件是通过事件委托的方式处理的（委托给组件最外层的元素）————为了高效
+      // (2). 在 React 中可以通过 event.target 来得到发生事件的 DOM 元素————不要过度使用 ref
+      showData = (event) => {
+        alert(event.target.value);
+      }
+
+      render() {
+        return (
+          <div>
+            <input type="text" placeholder="失去焦点提示数据" onBlur={this.showData} />
+          </div>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<MyComponent />);
+  </script>
+</body>
+
+</html>
