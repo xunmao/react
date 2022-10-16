@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高阶函数（函数柯里化）</title>
+  <style>
+    input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Login extends React.Component {
+
+      /**
+       * 【高阶函数】
+       * 
+       * 如果一个函数符合下面两个规范中的任意一个，那么该函数就是高阶函数：
+       * 1. 若 A 函数接收的参数是一个函数，那么 A 函数就是高阶函数
+       * 2. 若 A 函数被调用后返回一个函数，那么 A 函数就是高阶函数
+       * 
+       * 【函数柯里化】
+       * 
+       * 通过函数调用继续返回函数的方式，实现多次接收参数，最后统一处理的函数编码形式
+      */
+
+      state = {
+        username: '',
+        password: ''
+      }
+
+      // 【疑问】即使不传入 event 参数，也可以在方法中使用 event 是为什么？
+      // setUsername = () => {
+      //   this.setState({ username: event.target.value });
+      // }
+
+      // setPassword = () => {
+      //   this.setState({ password: event.target.value });
+      // }
+
+      handleSubmit = () => {
+        event.preventDefault();
+        alert(`用户名：${this.state.username}，密码：${this.state.password}`);
+      }
+
+      /**
+       * 【需求】
+       * 
+       * 将 setUsername 方法和 setPassword 方法封装为一个公共方法，
+       * 以便增加字段时不需要增加新的 set 方法
+      */
+
+      // 【方法一】将对象的属性改为变量，然后从输入框元素的属性 name 中获取相应的值
+      setFormData01 = () => {
+        const key = event.target.getAttribute('name');
+        const val = event.target.value;
+        // 【注意】属性名不能直接用 key ，需要进行计算
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
+        this.setState({ [key]: val });
+      }
+
+      // 【方法二】将对象的属性改为变量，然后使用高阶函数接收相应的值
+      setFormData02 = (key) => {
+        const val = event.target.value;
+        return () => {
+          this.setState({ [key]: val });
+        }
+      }
+
+      // 【方法三】将对象的属性改为变量，然后使用内联箭头函数，同时获取健值对
+      setFormData03 = (key) => {
+        this.setState({ [key]: event.target.value });
+      }
+
+      // 方法一对应的 render 方法
+      // render() {
+      //   return (
+      //     <form onSubmit={this.handleSubmit} >
+      //       用户名：<input type="text" onChange={this.setFormData01} name="username" />
+      //       密码：<input type="text" onChange={this.setFormData01} name="password" />
+      //       <button>登陆</button>
+      //     </form>
+      //   );
+      // }
+
+      // 方法二对应的 render 方法
+      // render() {
+      //   return (
+      //     <form onSubmit={this.handleSubmit} >
+      //       用户名：<input type="text" onChange={this.setFormData02('username')} name="username" />
+      //       密码：<input type="text" onChange={this.setFormData02('password')} name="password" />
+      //       <button>登陆</button>
+      //     </form>
+      //   );
+      // }
+
+      // 方法三对应的 render 方法
+      render() {
+        return (
+          <form onSubmit={this.handleSubmit} >
+            用户名：<input type="text" onChange={() => this.setFormData03('username')} name="username" />
+            密码：<input type="text" onChange={() => this.setFormData03('password')} name="password" />
+            <button>登陆</button>
+          </form>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Login />)
+  </script>
+</body>
+
+</html>
