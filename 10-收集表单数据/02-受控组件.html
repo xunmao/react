@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-受控组件</title>
+  <style>
+    input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Login extends React.Component {
+
+      state = {
+        username: '',
+        password: ''
+      }
+
+      // 通过 onChange 属性实现随时输入，随时获取
+      // 类似于 Vue 和 Angular 中的双向绑定
+      saveUsername = (event) => {
+        this.setState({ username: event.target.value });
+      }
+
+      savePassword = (event) => {
+        this.setState({ password: event.target.value });
+      }
+
+      handleSubmit = (event) => {
+        event.preventDefault();
+        const { username, password } = this.state;
+        alert(`用户名：${username}，密码：${password}`)
+      }
+
+      render() {
+        return (
+          <form onSubmit={this.handleSubmit} >
+            用户名：<input type="text" name="username" onChange={this.saveUsername} />
+            密码：<input type="text" name="password" onChange={this.savePassword} />
+            <button>登录</button>
+          </form>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Login />)
+  </script>
+</body>
+
+</html>

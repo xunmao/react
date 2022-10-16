@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01-非受控组件</title>
+  <style>
+    input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Login extends React.Component {
+      handleSubmit = (event) => {
+        // 阻止表达的默认提交行为
+        // 参考： https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+        event.preventDefault();
+        const { username, password } = this;
+        alert(`用户名：${username.value}，密码：${password.value}`);
+      }
+
+      render() {
+        return (
+          // 1. form 表单默认使用 GET 方法请求
+          // 2. 即使不写 action 也会触发默认的提交动作，并刷新页面
+          <form onSubmit={this.handleSubmit}>
+            用户名：<input type="text" name="username" ref={currentNode => this.username = currentNode} />
+            密码：<input type="password" name="password" ref={currentNode => this.password = currentNode} />
+            <button type="submit">登录</button>
+          </form>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Login />)
+  </script>
+</body>
+
+</html>
