@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01-引出生命周期</title>
+  <style>
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Demo extends React.Component {
+
+      state = { opacity: 1 }
+
+      unmountDemo = () => {
+        // 需要在即将卸载组件之前清除定时器
+        // 【方法一】在 unmount 方法之前调用（编程式调用）
+        // clearInterval(this.interval)
+
+        // 以下为 React 16 写法，会导致更高版本的 React 报警
+        // ReactDOM.unmountComponentAtNode(document.getElementById('container'));
+        // 警告内容如下：
+        // Warning: You are calling ReactDOM.unmountComponentAtNode() on a container that was previously passed to ReactDOMClient.createRoot().
+        // This is not supported. Did you mean to call root.unmount()?
+
+        // 以下为 React 18 写法（配合 createRoot 方法）
+        root.unmount(document.getElementById('container'))
+      }
+
+      // 【方法二】通过 componentWillUnmount 方法调用（声明式调用）
+      componentWillUnmount() {
+        clearInterval(this.interval)
+      }
+
+      // ==== 手动触发 ====
+      // changeOpacity = () => {
+      //   // 用 interval 属性保存这个定时器的 id ，以便后续清除这个定时器
+      //   this.interval = setInterval(() => {
+      //     let { opacity } = this.state
+      //     opacity -= 0.1
+      //     if (opacity <= 0) {
+      //       opacity = 1
+      //     }
+      //     this.setState({ opacity: opacity })
+      //   }, 200);
+      // }
+      // render() {
+      //   return (
+      //     <div>
+      //       <h2 style={{ opacity: this.state.opacity }} >React学不会，怎么办？</h2>
+      //       <button onClick={this.unmountDemo} >不活了</button>
+      //       <button onClick={this.changeOpacity} >改变透明度</button>
+      //     </div>
+      //   );
+      // }
+
+      // ==== 自动（React）触发 ====
+      componentDidMount() {
+        // 用 interval 属性保存这个定时器的 id ，以便后续清除这个定时器
+        this.interval = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity: opacity })
+        }, 200);
+      }
+      render() {
+        return (
+          <div>
+            <h2 style={{ opacity: this.state.opacity }} >React学不会，怎么办？</h2>
+            <button onClick={this.unmountDemo} >不活了</button>
+          </div>
+        );
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('container'))
+    root.render(<Demo />)
+  </script>
+</body>
+
+</html>
