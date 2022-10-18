@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-旧版生命周期</title>
+  <style>
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Count extends React.Component {
+
+      constructor(props) {
+        console.log("Count --- constructor");
+        super(props)
+        this.state = { count: 0 }
+      }
+
+      addOne = () => {
+        const { count } = this.state
+        this.setState({ count: count + 1 })
+      }
+
+      unmount = () => {
+        root.unmount(document.getElementById('container'))
+      }
+
+      componentWillMount() {
+        console.log("Count --- componentWillMount");
+      }
+
+      componentDidMount() {
+        console.log("Count --- componentDidMount");
+      }
+
+      shouldComponentUpdate() {
+        console.log("Count --- shouldComponentUpdate");
+        return true;
+      }
+
+      componentWillUpdate() {
+        console.log("Count --- componentWillUpdate");
+      }
+
+      componentDidUpdate() {
+        console.log("Count --- componentDidUpdate");
+      }
+
+      componentWillUnmount() {
+        console.log("Count --- componentWillUnmount");
+      }
+
+      render() {
+        console.log("Count --- render");
+        return (
+          <div>
+            <h2>当前计数器数值为：{this.state.count}</h2>
+            <button onClick={this.addOne} >➕</button>
+            <button onClick={this.unmount} >❌</button>
+          </div>
+        );
+      }
+    }
+    const root = ReactDOM.createRoot(document.getElementById('container'))
+    root.render(<Count />)
+  </script>
+</body>
+
+</html>
