@@ -37,3 +37,6 @@ Temporary Items
 
 # （xunmao）忽略依赖包文件
 lib/
+
+# （xunmao）忽略 drawio 临时文件
+.$*

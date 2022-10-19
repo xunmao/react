@@ -38,6 +38,13 @@
         root.unmount(document.getElementById('container'))
       }
 
+      force = () => {
+        // 【注意】这里只是为了演示 forceUpdate 方法被调用之后的效果，实际开发中不要这样做
+        // 直接更新 state 对象中的某个属性，然后强制渲染到页面
+        this.state.count += 1
+        this.forceUpdate()
+      }
+
       componentWillMount() {
         console.log("Count --- componentWillMount");
       }
@@ -48,7 +55,7 @@
 
       shouldComponentUpdate() {
         console.log("Count --- shouldComponentUpdate");
-        return true;
+        return false;
       }
 
       componentWillUpdate() {
@@ -70,6 +77,7 @@
             <h2>当前计数器数值为：{this.state.count}</h2>
             <button onClick={this.addOne} >➕</button>
             <button onClick={this.unmount} >❌</button>
+            <button onClick={this.force} >💪</button>
           </div>
         );
       }
