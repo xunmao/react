@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-父子组件</title>
+  <style>
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    class ParentComponent extends React.Component {
+
+      state = { weather: '🌞' }
+
+      rain = () => {
+        this.setState({ weather: '🌧️' })
+      }
+
+      frog = () => {
+        this.setState({ weather: '🌫️' })
+      }
+
+      typhoon = () => {
+        this.setState({ weather: '🌀' })
+      }
+
+      changeWeather = (btnName) => {
+        return () => {
+          switch (btnName) {
+            case '下雨':
+              this.setState({ weather: '🌧️' })
+              break;
+
+            case '雾霾':
+              this.setState({ weather: '🌫️' })
+              break;
+
+            case '台风':
+              this.setState({ weather: '🌀' })
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+
+      // 【注意】在父组件中引入子组件的标签，就可以渲染子组件了
+      render() {
+        return (
+          <div>
+            <ChildComponent weather={this.state.weather} />
+            <button onClick={this.changeWeather('下雨')} >下雨</button>
+            <button onClick={this.changeWeather('雾霾')} >雾霾</button>
+            <button onClick={this.changeWeather('台风')} >台风</button>
+          </div>
+        );
+      }
+    }
+
+    class ChildComponent extends React.Component {
+
+      componentWillReceiveProps() {
+        console.log('ChildComponent --- componentWillReceiveProps');
+      }
+
+      render() {
+        return (
+          <h2>今天的天气：{this.props.weather}</h2>
+        );
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('container'))
+    root.render(<ParentComponent />)
+  </script>
+</body>
+
+</html>
