@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>02-旧版（v16）生命周期</title>
+  <title>04-新版（v18）生命周期</title>
   <style>
     button {
       margin-right: 10px;
@@ -45,8 +45,8 @@
         this.forceUpdate()
       }
 
-      componentWillMount() {
-        console.log("Count --- componentWillMount");
+      UNSAFE_componentWillMount() {
+        console.log("Count --- UNSAFE_componentWillMount");
       }
 
       componentDidMount() {
@@ -55,15 +55,20 @@
 
       shouldComponentUpdate() {
         console.log("Count --- shouldComponentUpdate");
-        return false;
+        return true;
       }
 
-      componentWillUpdate() {
-        console.log("Count --- componentWillUpdate");
+      UNSAFE_componentWillUpdate() {
+        console.log("Count --- UNSAFE_componentWillUpdate");
       }
 
-      componentDidUpdate() {
-        console.log("Count --- componentDidUpdate");
+      getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("Count --- getSnapshotBeforeUpdate", prevProps, prevState);
+        return "😊"
+      }
+
+      componentDidUpdate(prevProps, prevState, snapshotVal) {
+        console.log("Count --- componentDidUpdate", prevProps, prevState, snapshotVal);
       }
 
       componentWillUnmount() {

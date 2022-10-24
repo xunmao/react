@@ -74,13 +74,31 @@
 
     class ChildComponent extends React.Component {
 
-      componentWillReceiveProps() {
-        console.log('ChildComponent --- componentWillReceiveProps');
+      state = { weather: '🌞' }
+
+      // 旧版（v16）生命周期钩子
+      // componentWillReceiveProps() {
+      //   console.log('ChildComponent --- componentWillReceiveProps');
+      // }
+
+      // 新版（v18）生命周期钩子
+      // UNSAFE_componentWillReceiveProps() {
+      //   console.log('ChildComponent --- UNSAFE_componentWillReceiveProps');
+      // }
+
+      // 新版（v18）生命周期钩子
+      static getDerivedStateFromProps(props, state) {
+        console.log('ChildComponent --- getDrivedStateFromProps', props, state);
+        return { weather: '❌' }
       }
 
       render() {
         return (
-          <h2>今天的天气：{this.props.weather}</h2>
+          <div>
+            <h2>今天的天气：{this.props.weather}</h2>
+            <p>建议打开 React 开发者工具，查看 state 的值如何变化</p>
+          </div>
+
         );
       }
     }
