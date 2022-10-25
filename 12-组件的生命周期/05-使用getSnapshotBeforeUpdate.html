@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05-使用getSnapshotBeforeUpdate</title>
+  <style>
+    .list {
+      width: 200px;
+      height: 150px;
+      background-color: skyblue;
+      overflow: auto;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    .news {
+      height: 30px;
+      margin-left: 10px;
+    }
+
+    .button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class NewsList extends React.Component {
+
+      state = { newsArr: [] }
+
+      stopUpdate = () => {
+        clearInterval(this.interval)
+      }
+
+      componentDidMount() {
+        this.interval = setInterval(() => {
+          const { newsArr } = this.state
+          const news = '📰 新闻 ...' + (newsArr.length + 1)
+          this.setState({ newsArr: [news, ...newsArr] })
+        }, 3000);
+      }
+
+      getSnapshotBeforeUpdate() {
+        return this.newsList.scrollHeight
+      }
+
+      componentDidUpdate(preProps, preState, snapshotVal) {
+        this.newsList.scrollTop += this.newsList.scrollHeight - snapshotVal
+      }
+
+      render() {
+        return (
+          <div>
+            <div className="list" ref={currentNode => this.newsList = currentNode} >
+              {
+                this.state.newsArr.map((news, index) => {
+                  return <div key={index} className="news" >{news}</div>
+                })
+              }
+            </div>
+            <button className="button" onClick={this.stopUpdate} >🤚停止更新</button>
+          </div>
+        );
+      }
+    }
+    const root = ReactDOM.createRoot(document.getElementById('container'))
+    root.render(<NewsList />)
+  </script>
+</body>
+
+</html>
