@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-key的作用</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    /**
+     * 经典面试题：
+     * 1). React / Vue 中的 key 有什么作用？（ key 的内部原理是什么？）
+     * 2). 为什么遍历列表时， key 最后不要用 index ？
+     * 
+     * 1. 虚拟 DOM 中 key 的作用：
+     *    1). 简单地说： key 是虚拟 DOM 对象的标识，在更新显示时起着十分重要的作用
+     * 
+     *    2). 详细地说：当状态中的数据发生变化时，React会根据【新数据】生成【新的虚拟DOM】，
+     *                随后，React将【新的虚拟DOM】和【旧的虚拟DOM】进行Diff比较，比较规则如下：
+     * 
+     *        a. 在旧的虚拟DOM中找到了与新的虚拟DOM相同的key：
+     *            (1). 若虚拟DOM中的内容没有变化，直接使用之前的真实DOM
+     *            (2). 若虚拟DOM中的内容发生变化，则生成新的真实DOM，然后替换掉页面中之前的真实DOM
+     * 
+     *        b. 在旧的虚拟DOM中未找到与新的虚拟DOM相同的key：
+     *            (1). 根据数据创建新的虚拟DOM，然后渲染到页面
+     * 
+     * 2. 用 index 作为 key 可能会引发的问题：
+     *    1). 若对数据进行逆序添加、逆序删除等破坏顺序的操作，则会产生没有必要的真实DOM更新，
+     *        页面效果虽然没有问题，但是代码执行效率变低
+     *    2). 如果结构中包含了输入类的DOM，则会导致错误的DOM更新，页面效果发生问题
+     *        【注意】如果使用了双向绑定，那么输入类DOM不受影响；没有使用双向绑定的输入类DOM会发生错误更新
+     *    3). 注意！如果不存在逆序添加、逆序删除等破坏顺序的操作，仅仅渲染并展示列表，
+     *        那么，使用 index 作为 key 没有问题
+    */
+
+    class Demo extends React.Component {
+
+      state = {
+        people: [
+          { id: 1, name: 'Tom', age: 18 },
+          { id: 2, name: 'Jerry', age: 19 },
+        ]
+      }
+
+      addAPerson = () => {
+        const person = { id: this.state.people.length + 1, name: 'Nick', age: 20 }
+        this.setState({ people: [person, ...this.state.people] })
+      }
+
+      saveAge = (person) => {
+        return () => {
+          const { people } = this.state
+          people.forEach((someone) => {
+            if (someone.id === person.id) {
+              someone.age = event.target.value
+            }
+          })
+          this.setState({ people: people })
+        }
+      }
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.addAPerson}>➕ 添加人员</button>
+            <ul>
+              {
+                this.state.people.map((person, index) => {
+                  return (
+                    <li key={index} >
+                      姓名：{person.name}，年龄：<input type="text" value={person.age} onChange={this.saveAge(person)} />，备注：<input type="text" />
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Demo />)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01-验证Diffing算法</title>
+  <style>
+    input,
+    .testLabel {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Clock extends React.Component {
+
+      state = { date: new Date() }
+
+      componentDidMount() {
+        this.interval = setInterval(() => {
+          this.setState({ date: new Date() })
+        }, 1000);
+      }
+
+      render() {
+        return (
+          <div>
+            <h2>⏰时钟</h2>
+            <div className="testLabel" >
+              即使时间在不停变化也不会影响已经输入的值
+            </div>
+            <input type="text" placeholder="请输入任意内容" />
+            <div>
+              <span>现在是：{this.state.date.toTimeString()}
+                <div className="testLabel" >
+                  即使处在 span 标签内部，也不会影响已经输入的值
+                </div>
+                <input type="text" placeholder="请输入任意内容" />
+              </span>
+            </div>
+          </div>
+        );
+      }
+    }
+    ReactDOM.createRoot(document.getElementById('container')).render(<Clock />)
+  </script>
+</body>
+
+</html>
