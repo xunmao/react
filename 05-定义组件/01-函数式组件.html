@@ -19,7 +19,11 @@
 
     // 1. 创建函数式组件————定义函数
     function MyComponent() {
-      // 此处的 this 为 undefined，因为 babel 编译后开启了严格模式
+      // 【TODO】这里的 this 需要再次确认，不是 undefined ，而是 Window 对象
+      // 只有明确开启严格模式后，这里的 this 才是 undefined
+      // 'use strict'
+
+      // 此处的 this 为 undefined ，因为 babel 编译后开启了严格模式
       console.log('this: ' + this);
       return <h3>我是用函数定义的组件（适用于【简单组件】的定义）</h3>
     }
