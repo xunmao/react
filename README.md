@@ -1,4 +1,4 @@
-# react
+# react-basics
 
 此项目用于学习和尝试 React ( https://react.docschina.org ) 框架的各种功能。
 
