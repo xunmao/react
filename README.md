@@ -1,6 +1,7 @@
 # react-basics
 
-此项目用于学习和尝试 React ( https://react.docschina.org ) 框架的各种功能。
+此项目用于学习和尝试 React ( https://react.docschina.org ) 框架的各种功能。  
+此项目属于 React 框架学习系列的第一季，主要学习 React 基础。
 
 ## 准备工作
 
@@ -12,9 +13,9 @@
 - Babel: 7.0.0-beta.2: 使用 Babel 将 JSX 翻译成 JS
 - PropTypes: 15.6.2: 使用 PropTypes 进行类型检查
 
-执行以下命令即可将依赖包下载至此项目的 `lib` 文件夹：
+执行以下命令即可将依赖包下载至此项目的`lib`文件夹：
 
-```shell
+```sh
 # 下载 React 依赖
 curl https://unpkg.com/react@18.2.0/umd/react.development.js > lib/react.development.js
 
