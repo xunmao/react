@@ -43,6 +43,19 @@
     console.log('[虚拟 DOM] 虚拟 DOM 是否属于 Object 类型', VDOM instanceof Object);
 
     console.log('[真实 DOM] 输出真实 DOM', document.getElementById('true-dom'));
+
+    /**
+     * 【注意】
+     * 1. 在普通 HTML 中，给 input 的 value 属性赋值后，用户依然可以从页面上更新 input 中输入的值
+     * 2. 但是，在 React 中，如果给 input 的 value 属性赋值，而不绑定 onChange 函数，
+     *    那么，用户就无法从页面上更新 input 中输入的值。于此同时，控制台会显示以下警告：
+     *    Warning: You provided a `value` prop to a form field without an `onChange` handler.
+     *    This will render a read-only field. If the field should be mutable use `defaultValue`.
+     *    Otherwise, set either `onChange` or `readOnly`.
+     *        at input
+     *        at div
+     *        at div
+    */
   </script>
 </body>
 
