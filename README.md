@@ -44,25 +44,42 @@ https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html#gatsby-focus-w
 
 1. [01-HelloReact](./01-HelloReact/HelloReact.html)
 1. 02-虚拟DOM的两种创建方式
-    1. [01-使用JSX创建](./02-%E8%99%9A%E6%8B%9FDOM%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/01-%E4%BD%BF%E7%94%A8JSX%E5%88%9B%E5%BB%BA.html)
-    1. [02-使用JS创建](./02-%E8%99%9A%E6%8B%9FDOM%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/02-%E4%BD%BF%E7%94%A8JS%E5%88%9B%E5%BB%BA.html)
-    1. [03-虚拟DOM与真实DOM](./02-%E8%99%9A%E6%8B%9FDOM%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F/03-%E8%99%9A%E6%8B%9FDOM%E4%B8%8E%E7%9C%9F%E5%AE%9EDOM.html)
-1. [03-JSX语法规则](./03-JSX%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/JSX%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99.html)
-1. [04-JSX应用练习](./04-JSX%E5%BA%94%E7%94%A8%E7%BB%83%E4%B9%A0/JSX%E5%BA%94%E7%94%A8%E7%BB%83%E4%B9%A0.html)
+    1. [01-使用JSX创建](./02-虚拟DOM的两种创建方式/01-使用JSX创建.html)
+    1. [02-使用JS创建](./02-虚拟DOM的两种创建方式/02-使用JS创建.html)
+    1. [03-虚拟DOM与真实DOM](./02-虚拟DOM的两种创建方式/03-虚拟DOM与真实DOM.html)
+1. [03-JSX语法规则](./03-JSX语法规则/JSX语法规则.html)
+1. [04-JSX应用练习](./04-JSX应用练习/JSX应用练习.html)
 1. 05-定义组件
-    1. [01-函数式组件](./05-%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/01-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6.html)
-    1. [02-类式组件](./05-%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/02-%E7%B1%BB%E5%BC%8F%E7%BB%84%E4%BB%B6.html)
+    1. [01-函数式组件](./05-定义组件/01-函数式组件.html)
+    1. [02-类式组件](./05-定义组件/02-类式组件.html)
 1. 06-组件实例的三大属性-state
     1. [01-标准State](./06-组件实例的三大属性-state/01-标准State.html)
     1. [02-简化State](./06-组件实例的三大属性-state/02-简化State.html)
 1. 07-组件实例的三大属性-props
-    1. [01-Props的基本用法.html](./07-%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B%E7%9A%84%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7-props/01-Props%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html)
+    1. [01-Props的基本用法.html](./07-组件实例的三大属性-props/01-Props的基本用法.html)
     1. [02-对Props进行类型限制](./07-组件实例的三大属性-props/02-对Props进行类型限制.html)
     1. [03-函数式组件使用Props](./07-组件实例的三大属性-props/03-函数式组件使用Props.html)
 1. 08-组件实例的三大属性-refs
-1. 09-事件处理
+    1. [01-字符串形式的Refs](./08-组件实例的三大属性-refs/01-字符串形式的Refs.html)
+    1. [02-回调函数形式的Refs](./08-组件实例的三大属性-refs/02-回调函数形式的Refs.html)
+    1. [03-关于回调Ref中回调函数的执行次数](./08-组件实例的三大属性-refs/03-关于回调Ref中回调函数的执行次数.html)
+    1. [04-使用createRef创建Ref](./08-组件实例的三大属性-refs/04-使用createRef创建Ref.html)
+1. [09-事件处理](./09-事件处理/事件处理.html)
 1. 10-收集表单数据
-1. 11-高阶函数（函数柯里化）
+    1. [01-非受控组件](./10-收集表单数据/01-非受控组件.html)
+    1. [02-受控组件](./10-收集表单数据/02-受控组件.html)
+1. [11-高阶函数（函数柯里化）](./11-高阶函数（函数柯里化）/高阶函数（函数柯里化）.html)
 1. 12-组件的生命周期
+    1. [01-引出生命周期](./12-组件的生命周期/01-引出生命周期.html)
+    1. [02-旧版（v16）生命周期](./12-组件的生命周期/02-旧版（v16）生命周期.html)
+    1. [03-父子组件](./12-组件的生命周期/03-父子组件.html)
+    1. [04-新版（v18）生命周期](./12-组件的生命周期/04-新版（v18）生命周期.html)
+    1. [05-使用getSnapshotBeforeUpdate](./12-组件的生命周期/05-使用getSnapshotBeforeUpdate.html)
 1. 13-DOM的Diffing算法
+    1. [01-验证Diffing算法](./13-DOM的Diffing算法/01-验证Diffing算法.html)
+    1. [02-key的作用](./13-DOM的Diffing算法/02-key的作用.html)
 1. 复习
+    1. [01-类的基本知识](./复习/01-类的基本知识.html)
+    1. [02-原生事件绑定](./复习/02-原生事件绑定.html)
+    1. [03-类的方法中this的指向](./复习/03-类的方法中this的指向.html)
+    1. [04-展开运算符](./复习/04-展开运算符.html)
