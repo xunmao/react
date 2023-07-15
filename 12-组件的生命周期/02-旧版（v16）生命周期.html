@@ -55,6 +55,9 @@
 
       shouldComponentUpdate() {
         console.log("Count --- shouldComponentUpdate");
+        // 如果返回 true，那么，setState 方法可以更新 state
+        // 如果返回 false，那么，setState 方法无法更新 state
+        // 但是，使用 forceUpdate 方法，无论在何时都可以强制更新 state
         return false;
       }
 
